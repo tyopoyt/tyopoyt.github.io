@@ -1,0 +1,1 @@
+ng build --baseHref="https://davidcrouse.dev" & XCOPY ..\CNAME .\docs
