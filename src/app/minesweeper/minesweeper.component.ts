@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Tile } from '../models/tile.model';
 import * as _ from 'lodash';
 import { Point } from '../models/point.model';
+import { Subscription, timer } from 'rxjs';
 
 export enum VisitPurpose {
   mines = 'mines',
@@ -24,6 +25,13 @@ export class MinesweeperComponent implements OnInit {
   gameWon: boolean;
   uncoveredTiles: number;
   mineTiles: Tile[];
+  secondsPassed: number;
+  seconds: number = 0;
+  minutes: number = 0;
+  hours: number = 0;
+  minesMarked: number;
+
+  timerSubscription: Subscription;
 
   constructor() { }
 
@@ -36,6 +44,8 @@ export class MinesweeperComponent implements OnInit {
     this.gameWon = false;
     this.uncoveredTiles = 0;
     this.mineTiles = [];
+    this.secondsPassed = 0;
+    this.minesMarked = 0;
 
     for (let x = 0; x < this.rows; x++) {
       const rowTiles = []
@@ -75,7 +85,6 @@ export class MinesweeperComponent implements OnInit {
 
   visitNeighbors(purpose: VisitPurpose, coords: Point): number {
     let mines = 0;
-    // const neighborsToVisit = [];
     for (let rowOffset = -1; rowOffset < 2; rowOffset++) {
       for (let colOffset = -1; colOffset < 2; colOffset++) {
         const neighborX = coords.x + rowOffset;
@@ -106,10 +115,20 @@ export class MinesweeperComponent implements OnInit {
 
   tileClicked(tile: Tile): void {
     if (!(tile.flagged || tile.uncovered || this.gameWon || this.gameOver)) {
+      if (this.uncoveredTiles === 0) {
+        this.timerSubscription = timer(0, 1000).subscribe(n => {
+          this.secondsPassed = n;
+          this.seconds = n % 60;
+          this.minutes = Math.floor(n / 60);
+          this.hours = Math.floor(n / 3600);
+        });
+      }
+
       tile.clicked = true;
       this.uncoverTile(tile);
 
       if (tile.mines === -1) {
+        this.timerSubscription.unsubscribe();
         this.gameOver = true;
         this.revealMines();
       }
@@ -123,6 +142,15 @@ export class MinesweeperComponent implements OnInit {
   tileFlagged(tile: Tile): false {
     if (!(this.gameWon || this.gameOver)) {
       tile.flagged = !tile.flagged;
+
+      if (!tile.uncovered) {
+        if (tile.flagged) {
+          this.minesMarked++;
+        } else {
+          this.minesMarked--;
+        }
+      }
+
     }
     return false;
   }
@@ -132,7 +160,9 @@ export class MinesweeperComponent implements OnInit {
     this.uncoveredTiles++;
 
     if (this.uncoveredTiles === (this.rows * this.cols) - this.mines) {
+      this.timerSubscription.unsubscribe();
       this.gameWon = true;
+      this.minesMarked = this.mines;
       this.revealMines();
     }
   }

@@ -14,28 +14,38 @@ div.minesweeper-container {
 
     &.game-over {
         background-color: rgb(255, 72, 72);
-        > span {
+        > span > div {
             color: white;
         }
     }
 
     &.game-won {
         background-color: springgreen;
-        > span {
+        > span > div {
             color: white;
         }
     }
 }
 
-span.game-status {
-    font-weight: bold;
+span.minesweeper-header {
     display: flex;
-    width: 100%;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    line-height: 2rem;
-    font-size: large;
-    padding-bottom: 0.5rem;
+    
+    > div {
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 2rem;
+        font-size: large;
+        padding-bottom: 0.5rem;
+
+        &.game-status {
+            width: 100%;
+        }
+    }
 }
 
 mat-grid-tile {
