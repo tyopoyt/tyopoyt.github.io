@@ -64,7 +64,6 @@ export class MinesweeperComponent implements OnInit {
         } else if ( neighborX < 0 || neighborX >= this.rows || neighborY < 0 || neighborY >= this.cols) {
           continue;
         } else {
-          // this is -= because a mine is represented as -1
           if (this.board[neighborX][neighborY].mines === -1) {
             mines += 1;
           } 
