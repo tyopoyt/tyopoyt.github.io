@@ -1,38 +1,45 @@
 mat-grid-list {
-    max-height: 100vh;
+    background-color: whitesmoke;
+    border-radius: 3px;
+    border: solid 4px whitesmoke;
+}
+
+mat-icon {
+    display: inline;
+}
+
+div.minesweeper-container {
+    padding: 0.5rem;
+    border-radius: 6px;
+
+    &.game-over {
+        background-color: rgb(255, 72, 72);
+        > span {
+            color: white;
+        }
+    }
+
+    &.game-won {
+        background-color: springgreen;
+        > span {
+            color: white;
+        }
+    }
+}
+
+span.game-status {
+    font-weight: bold;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    line-height: 2rem;
+    font-size: large;
+    padding-bottom: 0.5rem;
 }
 
 mat-grid-tile {
-    border-radius: 6px;
-
-    &.covered {
-        background-color: whitesmoke;
-    }
-
-    &.flagged {
-        mat-icon {
-            color: #fe0000;
-        }
-    }
-
-    &.uncovered {
-        background-color: #e0e0e0;
-        font-weight: 900;
-        font-size:xx-large;
-
-        &.mine {
-            background-color: #fe0000;
-            font-size: initial;
-            
-            mat-icon {
-                color: black;
-                min-width: 20px;
-                min-height: 20px;
-                width: 30%;
-                height: 30%;
-            }
-        }
-    }
+    border-radius: 3px;
 
     &.mines-1 {
         color: #0100fe;
@@ -65,4 +72,53 @@ mat-grid-tile {
     &.mines-8 {
         color: #808080;
     }
+
+    &.covered {
+        background-color: rgb(240, 240, 240);
+    }
+
+    &.flagged {
+        mat-icon {
+            color: #fe0000;
+        }
+
+        &.game-over {
+            mat-icon {
+                color: #000000;
+            }
+        }
+    }
+
+    &.uncovered {
+        background-color: #d4d4d4;
+        font-weight: 900;
+        font-size:xx-large;
+
+        &.mines--1 {
+            &.clicked {
+                background-color: #fe0000;
+            }
+            font-size: initial;
+            
+            mat-icon {
+                color: black;
+                min-width: 20px;
+                min-height: 20px;
+                width: 30%;
+                height: 30%;
+            }
+
+            &.game-over.flagged {
+                mat-icon {
+                    color: #fe0000;
+                }
+            }
+        }
+
+        &.flagged {
+            color: #aaa9a9;
+        }
+    }
+
+    
 }
