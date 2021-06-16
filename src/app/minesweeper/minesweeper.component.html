@@ -1,0 +1,9 @@
+<mat-grid-list cols="8" rowHeight="1:1">
+    <ng-container *ngFor="let row of board">
+        <ng-container *ngFor="let tile of row">
+            <mat-grid-tile [ngClass]="{'mine': tile.mines === -1}" class="mines-{{tile.mines}}">
+                {{tile.mines}}
+            </mat-grid-tile>
+        </ng-container>
+    </ng-container>
+</mat-grid-list>

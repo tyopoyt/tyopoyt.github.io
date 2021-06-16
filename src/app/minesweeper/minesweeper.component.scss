@@ -1,0 +1,44 @@
+mat-grid-list {
+    width: 100%;
+}
+
+mat-grid-tile {
+    background-color: whitesmoke;
+    font-weight: 900;
+
+    &.mine {
+        background-color: orangered;
+    }
+
+    &.mines-1 {
+        color: #0100fe;
+    }
+
+    &.mines-2 {
+        color: #017f01;
+    }
+
+    &.mines-3 {
+        color: #fe0000;
+    }
+
+    &.mines-4 {
+        color: #010080;
+    }
+
+    &.mines-5 {
+        color: #810102;
+    }
+
+    &.mines-6 {
+        color: #008081;
+    }
+
+    &.mines-7 {
+        color: #000000;
+    }
+
+    &.mines-8 {
+        color: #808080;
+    }
+}
