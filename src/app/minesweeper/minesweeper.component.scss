@@ -1,0 +1,68 @@
+mat-grid-list {
+    max-height: 100vh;
+}
+
+mat-grid-tile {
+    border-radius: 6px;
+
+    &.covered {
+        background-color: whitesmoke;
+    }
+
+    &.flagged {
+        mat-icon {
+            color: #fe0000;
+        }
+    }
+
+    &.uncovered {
+        background-color: #e0e0e0;
+        font-weight: 900;
+        font-size:xx-large;
+
+        &.mine {
+            background-color: #fe0000;
+            font-size: initial;
+            
+            mat-icon {
+                color: black;
+                min-width: 20px;
+                min-height: 20px;
+                width: 30%;
+                height: 30%;
+            }
+        }
+    }
+
+    &.mines-1 {
+        color: #0100fe;
+    }
+
+    &.mines-2 {
+        color: #017f01;
+    }
+
+    &.mines-3 {
+        color: #fe0000;
+    }
+
+    &.mines-4 {
+        color: #010080;
+    }
+
+    &.mines-5 {
+        color: #810102;
+    }
+
+    &.mines-6 {
+        color: #008081;
+    }
+
+    &.mines-7 {
+        color: #000000;
+    }
+
+    &.mines-8 {
+        color: #808080;
+    }
+}

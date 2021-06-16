@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatIconRegistry } from "@angular/material/icon";
+import { DomSanitizer } from "@angular/platform-browser";
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'personal-website';
+  constructor (private matIconRegistry: MatIconRegistry, private domSanitizer: DomSanitizer) {
+    this.matIconRegistry.addSvgIcon('mine', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/mine.svg'));
+    this.matIconRegistry.addSvgIcon('flag', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/flag.svg'));
+  }
 }
