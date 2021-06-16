@@ -1,5 +1,10 @@
 <div class="minesweeper-container" [ngClass]="{ 'game-over': gameOver, 'game-won': gameWon }" (contextmenu)="false">
-    <span class="game-status">Game {{ gameOver ? 'over!' : ( gameWon ? 'won!' : 'in progress...' ) }}</span>
+    <span class="minesweeper-header">
+        <div>{{ mines - minesMarked }}</div>
+        <div class="game-status">Game {{ gameOver ? 'over!' : ( gameWon ? 'won!' : 'in progress...' ) }}</div>
+        <div>{{ hours }}:{{ minutes | number:'2.0' }}:{{ seconds | number:'2.0' }}</div>
+    </span>
+    
     <mat-grid-list [cols]="cols" [gutterSize]="'4px'" rowHeight="1:1" (contextmenu)="false">
         <div class="tile-container">
             <ng-container *ngFor="let row of board">
