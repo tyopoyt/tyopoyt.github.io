@@ -1,8 +1,13 @@
-<mat-grid-list cols="8" rowHeight="1:1">
+<mat-grid-list [cols]="cols" rowHeight="1:1">
     <ng-container *ngFor="let row of board">
         <ng-container *ngFor="let tile of row">
-            <mat-grid-tile [ngClass]="{'mine': tile.mines === -1}" class="mines-{{tile.mines}}">
-                {{tile.mines}}
+            <mat-grid-tile [ngClass]="{'mine': tile.mines === -1, 'uncovered': tile.uncovered, 'covered': !tile.uncovered, 'flagged': tile.flagged}"
+                           class="mines-{{tile.mines}}" (click)="tileClicked(tile)" (contextmenu)="tileFlagged(tile)">
+                <span *ngIf="tile.uncovered && tile.mines > 0">
+                    {{tile.mines}}
+                </span>
+                <mat-icon *ngIf="tile.uncovered && tile.mines === -1" svgIcon="mine"></mat-icon>
+                <mat-icon *ngIf="tile.flagged" svgIcon="flag"></mat-icon>
             </mat-grid-tile>
         </ng-container>
     </ng-container>

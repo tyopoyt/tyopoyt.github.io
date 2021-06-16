@@ -1,13 +1,37 @@
 mat-grid-list {
-    width: 100%;
+    max-height: 100vh;
 }
 
 mat-grid-tile {
-    background-color: whitesmoke;
-    font-weight: 900;
+    border-radius: 6px;
 
-    &.mine {
-        background-color: orangered;
+    &.covered {
+        background-color: whitesmoke;
+    }
+
+    &.flagged {
+        mat-icon {
+            color: #fe0000;
+        }
+    }
+
+    &.uncovered {
+        background-color: #e0e0e0;
+        font-weight: 900;
+        font-size:xx-large;
+
+        &.mine {
+            background-color: #fe0000;
+            font-size: initial;
+            
+            mat-icon {
+                color: black;
+                min-width: 20px;
+                min-height: 20px;
+                width: 30%;
+                height: 30%;
+            }
+        }
     }
 
     &.mines-1 {
