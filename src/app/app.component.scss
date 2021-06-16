@@ -7,30 +7,11 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 8px 0;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  .spacer {
-    flex: 1;
-  }
-
   .content {
     display: flex;
-    margin: 82px auto 32px;
-    padding: 0 16px;
-    min-width: 40vw;
-    flex-direction: column;
+    height: 100vh;
     align-items: center;
+    justify-content: center;
   }
 
   svg.material-icons {
@@ -171,7 +152,7 @@
   }
 
   app-minesweeper {
-    width: 44vw;
+    width: 45vw;
   }
 
   @media screen and (max-width: 575px) {
