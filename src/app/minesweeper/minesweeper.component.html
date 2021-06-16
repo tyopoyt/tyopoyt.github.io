@@ -13,7 +13,7 @@
                         </span>
                         <mat-icon *ngIf="tile.uncovered && tile.mines === -1" svgIcon="mine"></mat-icon>
                         <mat-icon *ngIf="tile.flagged && !tile.uncovered && !gameOver" svgIcon="flag"></mat-icon>
-                        <mat-icon *ngIf="tile.flagged && tile.mines !== -1 && gameOver" svgIcon="cancel"></mat-icon>
+                        <mat-icon *ngIf="tile.flagged && tile.mines !== -1 && !tile.uncovered && gameOver" svgIcon="cancel"></mat-icon>
                     </mat-grid-tile>
                 </ng-container>
             </ng-container>
