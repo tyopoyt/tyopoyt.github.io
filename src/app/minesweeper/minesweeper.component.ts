@@ -72,6 +72,7 @@ export class MinesweeperComponent implements OnInit {
         } else if ( neighborX < 0 || neighborX >= this.rows || neighborY < 0 || neighborY >= this.cols) {
           continue;
         } else {
+          // visit neighbors in correct way
           if (purpose === VisitPurpose.mines && this.board[neighborX][neighborY].mines === -1) {
             mines += 1;
           } else if (purpose === VisitPurpose.reveal) {
