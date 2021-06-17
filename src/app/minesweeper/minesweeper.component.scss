@@ -42,13 +42,33 @@ div.minesweeper-container {
             transform: translate(-50%, -50%);
         }
     }
+
+    span#hint-message {
+        color: black;
+        font-size: large;
+        font-weight: bold;
+        line-height: 2rem;
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: relative;
+
+        > p {
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
 }
 
 span.minesweeper-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+    width: 100%;
+    display: inline-grid;
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr 1fr;
     
     > div {
         font-weight: bold;
@@ -59,8 +79,19 @@ span.minesweeper-header {
         font-size: large;
         padding-bottom: 0.5rem;
 
-        &.game-status {
-            width: 100%;
+        &#mine-counter {
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        &#stopwatch {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        &#status-display {
+            display: flex;
+            justify-content: center;
         }
     }
 }

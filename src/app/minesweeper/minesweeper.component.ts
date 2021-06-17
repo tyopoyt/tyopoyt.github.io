@@ -20,11 +20,15 @@ export class MinesweeperComponent implements OnInit {
   handleKeyboardEvent(event: KeyboardEvent) { 
     if (event.key === ' ') {
       if (this.gameOver || this.gameWon) {
-        this.generateBoard()
+        this.generateBoard();
       } else {
-        if (this.paused) {
+        if (this.paused) { // resume
+          let now = Date.now().valueOf();
+          console.log(now - this.timePaused)
+          this.totalPauseTime += now - this.timePaused;
           this.initTimerSub();
-        } else {
+        } else { // pause
+          this.timePaused = Date.now().valueOf();
           this.timerSubscription.unsubscribe();
         }
         this.paused = !this.paused;
@@ -36,17 +40,23 @@ export class MinesweeperComponent implements OnInit {
   @Input() cols: number = 8;
   @Input() mines: number = 10;
 
-  board: Tile[][] = [];
+  // game state
+  board: Tile[][] = []; // the game board
   gameOver: boolean;
   gameWon: boolean;
-  uncoveredTiles: number;
-  mineTiles: Tile[];
-  secondsPassed: number;
-  seconds: number = 0;
-  minutes: number = 0;
-  hours: number = 0;
-  minesMarked: number;
   paused: boolean;
+  mineTiles: Tile[];
+  uncoveredTiles: number;
+  minesMarked: number;
+
+  // time info
+  timeStarted: number; // time game was started
+  timePaused: number; // time the game was paused
+  totalPauseTime: number; // how long game has been paused
+  centiseconds: number = 0; // hundredths of a second to display
+  seconds: number = 0; //seconds to display
+  minutes: number = 0; // minutes to display
+  hours: number = 0; // hours to display  
 
   timerSubscription: Subscription;
 
@@ -61,7 +71,8 @@ export class MinesweeperComponent implements OnInit {
     this.gameWon = false;
     this.uncoveredTiles = 0;
     this.mineTiles = [];
-    this.secondsPassed = 0;
+    this.totalPauseTime = 0;
+    this.centiseconds = 0;
     this.seconds = 0;
     this.minutes = 0;
     this.hours = 0;
@@ -101,7 +112,6 @@ export class MinesweeperComponent implements OnInit {
         }
       }
     }
-
   }
 
   visitNeighbors(purpose: VisitPurpose, coords: Point): number {
@@ -137,6 +147,7 @@ export class MinesweeperComponent implements OnInit {
   tileClicked(tile: Tile): void {
     if (!(tile.flagged || tile.uncovered || this.gameWon || this.gameOver)) {
       if (this.uncoveredTiles === 0) {
+        this.timeStarted = Date.now().valueOf();
         this.initTimerSub();
       }
 
@@ -190,11 +201,14 @@ export class MinesweeperComponent implements OnInit {
   }
 
   initTimerSub(): void {
-    this.timerSubscription = timer(1000, 1000).subscribe(() => {
-      this.secondsPassed++;
-      this.seconds = this.secondsPassed % 60;
-      this.minutes = Math.floor(this.secondsPassed / 60);
-      this.hours = Math.floor(this.secondsPassed / 3600);
+    this.timerSubscription = timer(10, 10).subscribe(() => {
+      // update time values
+      let now = Date.now().valueOf();
+      let timePlayed = now - this.timeStarted - this.totalPauseTime;
+      this.centiseconds = Math.floor((timePlayed / 10) % 100);
+      this.seconds = Math.floor((timePlayed / 1000) % 60)
+      this.minutes = Math.floor((timePlayed / 60000) % 60);
+      this.hours = Math.floor(timePlayed / 3600000)
     });
   }
 
