@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Tile } from '../models/tile.model';
 import * as _ from 'lodash';
 import { Point } from '../models/point.model';
@@ -16,6 +16,22 @@ export enum VisitPurpose {
 })
 export class MinesweeperComponent implements OnInit {
 
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) { 
+    if (event.key === ' ') {
+      if (this.gameOver || this.gameWon) {
+        this.generateBoard()
+      } else {
+        if (this.paused) {
+          this.initTimerSub();
+        } else {
+          this.timerSubscription.unsubscribe();
+        }
+        this.paused = !this.paused;
+      }
+    }
+  }
+
   @Input() rows: number = 8;
   @Input() cols: number = 8;
   @Input() mines: number = 10;
@@ -30,6 +46,7 @@ export class MinesweeperComponent implements OnInit {
   minutes: number = 0;
   hours: number = 0;
   minesMarked: number;
+  paused: boolean;
 
   timerSubscription: Subscription;
 
@@ -45,7 +62,11 @@ export class MinesweeperComponent implements OnInit {
     this.uncoveredTiles = 0;
     this.mineTiles = [];
     this.secondsPassed = 0;
+    this.seconds = 0;
+    this.minutes = 0;
+    this.hours = 0;
     this.minesMarked = 0;
+    this.paused = false;
 
     for (let x = 0; x < this.rows; x++) {
       const rowTiles = []
@@ -116,12 +137,7 @@ export class MinesweeperComponent implements OnInit {
   tileClicked(tile: Tile): void {
     if (!(tile.flagged || tile.uncovered || this.gameWon || this.gameOver)) {
       if (this.uncoveredTiles === 0) {
-        this.timerSubscription = timer(0, 1000).subscribe(n => {
-          this.secondsPassed = n;
-          this.seconds = n % 60;
-          this.minutes = Math.floor(n / 60);
-          this.hours = Math.floor(n / 3600);
-        });
+        this.initTimerSub();
       }
 
       tile.clicked = true;
@@ -171,6 +187,15 @@ export class MinesweeperComponent implements OnInit {
     for (const mine of this.mineTiles) {
       mine.uncovered = true;
     }
+  }
+
+  initTimerSub(): void {
+    this.timerSubscription = timer(1000, 1000).subscribe(() => {
+      this.secondsPassed++;
+      this.seconds = this.secondsPassed % 60;
+      this.minutes = Math.floor(this.secondsPassed / 60);
+      this.hours = Math.floor(this.secondsPassed / 3600);
+    });
   }
 
   revealAll(): void {

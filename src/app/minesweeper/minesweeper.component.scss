@@ -11,6 +11,7 @@ mat-icon {
 div.minesweeper-container {
     padding: 0.5rem;
     border-radius: 6px;
+    height: 100%;
 
     &.game-over {
         background-color: rgb(255, 72, 72);
@@ -23,6 +24,22 @@ div.minesweeper-container {
         background-color: springgreen;
         > span > div {
             color: white;
+        }
+    }
+
+    span#pause-message {
+        color: black;
+        font-size: xx-large;
+        font-weight: 900;
+        height: 100%;
+        width: 100%;
+        display: block;
+
+        > p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
     }
 }
@@ -83,10 +100,6 @@ mat-grid-tile {
         color: #808080;
     }
 
-    &.covered {
-        background-color: rgb(240, 240, 240);
-    }
-
     &.flagged {
         mat-icon {
             color: #fe0000;
@@ -130,5 +143,7 @@ mat-grid-tile {
         }
     }
 
-    
+    &.covered {
+        background-color: rgb(240, 240, 240);
+    }  
 }

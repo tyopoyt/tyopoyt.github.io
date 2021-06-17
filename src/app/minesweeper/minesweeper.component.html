@@ -1,22 +1,22 @@
 <div class="minesweeper-container" [ngClass]="{ 'game-over': gameOver, 'game-won': gameWon }" (contextmenu)="false">
     <span class="minesweeper-header">
         <div>{{ mines - minesMarked }}</div>
-        <div class="game-status">Game {{ gameOver ? 'over!' : ( gameWon ? 'won!' : 'in progress...' ) }}</div>
+        <div class="game-status">Game {{ gameOver ? 'over!' : ( gameWon ? 'won!' : ( paused ? 'is paused.' : 'in progress...' )) }}</div>
         <div>{{ hours }}:{{ minutes | number:'2.0' }}:{{ seconds | number:'2.0' }}</div>
     </span>
     
-    <mat-grid-list [cols]="cols" [gutterSize]="'4px'" rowHeight="1:1" (contextmenu)="false">
+    <mat-grid-list [cols]="cols" [gutterSize]="'4px'" rowHeight="1:1" (contextmenu)="false" >
         <div class="tile-container">
             <ng-container *ngFor="let row of board">
                 <ng-container *ngFor="let tile of row">
-                    <mat-grid-tile [ngClass]="{'uncovered': tile.uncovered, 'covered': !tile.uncovered,
+                    <mat-grid-tile [ngClass]="{'uncovered': tile.uncovered && !paused, 'covered': !tile.uncovered || paused,
                                               'flagged': tile.flagged, 'clicked': tile.clicked, 'game-over': gameOver}"
-                                   class="mines-{{ tile.uncovered ? tile.mines : 'unknown'}}"
+                                   class="mines-{{ tile.uncovered && !paused ? tile.mines : 'unknown'}}"
                                    (click)="tileClicked(tile)" (contextmenu)="tileFlagged(tile)">
-                        <span *ngIf="tile.uncovered && tile.mines > 0">
+                        <span *ngIf="tile.uncovered && tile.mines > 0 && !paused">
                             {{tile.mines}}
                         </span>
-                        <mat-icon *ngIf="tile.uncovered && tile.mines === -1" svgIcon="mine"></mat-icon>
+                        <mat-icon *ngIf="tile.uncovered && tile.mines === -1 && !paused" svgIcon="mine"></mat-icon>
                         <mat-icon *ngIf="tile.flagged && !tile.uncovered && !gameOver" svgIcon="flag"></mat-icon>
                         <mat-icon *ngIf="tile.flagged && tile.mines !== -1 && !tile.uncovered && gameOver" svgIcon="cancel"></mat-icon>
                     </mat-grid-tile>
@@ -24,5 +24,8 @@
             </ng-container>
         </div>
     </mat-grid-list>
+    <span id="pause-message" *ngIf="paused">
+        <p>No cheating ;)</p>
+    </span>
 </div>
 
