@@ -170,7 +170,7 @@ export class MinesweeperComponent implements OnInit {
   }
 
   tileFlagged(tile: Tile): false {
-    if (!(this.gameWon || this.gameOver || this.paused)) {
+    if (!(this.gameWon || this.gameOver || this.paused || isNaN(this.timeStarted))) {
       tile.flagged = !tile.flagged;
 
       if (!tile.uncovered) {
