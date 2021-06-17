@@ -2,7 +2,7 @@
     <span class="minesweeper-header">
         <div id="mine-counter">{{ mines - minesMarked }}</div>
         <div id="status-display" class="game-status">{{ uncoveredTiles ? (gameOver ? 'Game over!' : ( gameWon ? 'You win!' : ( paused ? 'Game paused.' : 'Game in progress...' ))) : 'Click a tile to begin.' }}</div>
-        <div id="stopwatch" >{{ hours }}:{{ minutes | number:'2.0' }}:{{ seconds | number:'2.0' }}.{{ centiseconds | number:'2.0' }}</div>
+        <div id="stopwatch" >{{ hours || 0 }}:{{ minutes | number:'2.0' || 00 }}:{{ seconds | number:'2.0' || 00 }}.{{ centiseconds | number:'2.0' || 00 }}</div>
         <!-- <div>{{ hours }}:{{ minutes }}:{{ seconds }}</div> -->
     </span>
     
@@ -17,9 +17,9 @@
                         <span *ngIf="tile.uncovered && tile.mines > 0 && !paused">
                             {{tile.mines}}
                         </span>
-                        <mat-icon *ngIf="tile.uncovered && tile.mines === -1 && !paused" svgIcon="mine"></mat-icon>
-                        <mat-icon *ngIf="tile.flagged && !tile.uncovered && !paused && !gameOver" svgIcon="flag"></mat-icon>
-                        <mat-icon *ngIf="tile.flagged && tile.mines !== -1 && !tile.uncovered && gameOver" svgIcon="cancel"></mat-icon>
+                        <mat-icon [class.visible]="tile.uncovered && tile.mines === -1" class="mine" *ngIf="!paused" svgIcon="mine"></mat-icon>
+                        <mat-icon [class.visible]="tile.flagged" class="flag" *ngIf="!tile.uncovered && !paused && !gameOver" svgIcon="flag"></mat-icon>
+                        <mat-icon [class.visible]="tile.flagged && tile.mines !== -1 && gameOver" *ngIf="!tile.uncovered" svgIcon="cancel"></mat-icon>
                     </mat-grid-tile>
                 </ng-container>
             </ng-container>
