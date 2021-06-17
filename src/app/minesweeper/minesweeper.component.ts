@@ -145,7 +145,7 @@ export class MinesweeperComponent implements OnInit {
   }
 
   tileClicked(tile: Tile): void {
-    if (!(tile.flagged || tile.uncovered || this.gameWon || this.gameOver)) {
+    if (!(tile.flagged || tile.uncovered || this.gameWon || this.gameOver || this.paused)) {
       if (this.uncoveredTiles === 0) {
         this.timeStarted = Date.now().valueOf();
         this.initTimerSub();
@@ -167,7 +167,7 @@ export class MinesweeperComponent implements OnInit {
   }
 
   tileFlagged(tile: Tile): false {
-    if (!(this.gameWon || this.gameOver)) {
+    if (!(this.gameWon || this.gameOver || this.paused)) {
       tile.flagged = !tile.flagged;
 
       if (!tile.uncovered) {

@@ -1,7 +1,7 @@
 <div class="minesweeper-container" [ngClass]="{ 'game-over': gameOver, 'game-won': gameWon }" (contextmenu)="false">
     <span class="minesweeper-header">
         <div id="mine-counter">{{ mines - minesMarked }}</div>
-        <div id="status-display" class="game-status">Game {{ gameOver ? 'over!' : ( gameWon ? 'won!' : ( paused ? 'is paused.' : 'in progress...' )) }}</div>
+        <div id="status-display" class="game-status">{{ uncoveredTiles ? (gameOver ? 'Game over!' : ( gameWon ? 'You win!' : ( paused ? 'Game paused.' : 'Game in progress...' ))) : 'Click a tile to begin.' }}</div>
         <div id="stopwatch" >{{ hours }}:{{ minutes | number:'2.0' }}:{{ seconds | number:'2.0' }}.{{ centiseconds | number:'2.0' }}</div>
         <!-- <div>{{ hours }}:{{ minutes }}:{{ seconds }}</div> -->
     </span>
