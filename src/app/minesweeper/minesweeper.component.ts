@@ -21,15 +21,18 @@ export class MinesweeperComponent implements OnInit {
     if (event.key === ' ') {
       if (this.gameOver || this.gameWon) {
         this.generateBoard();
-      } else {
+        this.timeStarted = NaN;
+      } else if (!isNaN(this.timeStarted)) {
         if (this.paused) { // resume
           let now = Date.now().valueOf();
           console.log(now - this.timePaused)
           this.totalPauseTime += now - this.timePaused;
           this.initTimerSub();
         } else { // pause
-          this.timePaused = Date.now().valueOf();
-          this.timerSubscription.unsubscribe();
+          if (!isNaN(this.timeStarted)) {
+            this.timePaused = Date.now().valueOf();
+            this.timerSubscription.unsubscribe();
+          }
         }
         this.paused = !this.paused;
       }
