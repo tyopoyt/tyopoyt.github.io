@@ -7,12 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MinesweeperComponent } from './minesweeper/minesweeper.component'
+import { MinesweeperComponent } from './minesweeper/minesweeper.component';
+import { ScorePipePipe } from './pipes/score-pipe.pipe'
 
 @NgModule({
   declarations: [
     AppComponent,
-    MinesweeperComponent
+    MinesweeperComponent,
+    ScorePipePipe
   ],
   imports: [
     BrowserModule,

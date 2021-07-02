@@ -3,6 +3,8 @@ import { Tile } from '../models/tile.model';
 import * as _ from 'lodash';
 import { Point } from '../models/point.model';
 import { Subscription, timer } from 'rxjs';
+import { HighScore } from '../models/highScore';
+import { DecimalPipe } from '@angular/common';
 
 export enum VisitPurpose {
   mines = 'mines',
@@ -12,7 +14,8 @@ export enum VisitPurpose {
 @Component({
   selector: 'app-minesweeper',
   templateUrl: './minesweeper.component.html',
-  styleUrls: ['./minesweeper.component.scss']
+  styleUrls: ['./minesweeper.component.scss'],
+  providers: [DecimalPipe]
 })
 export class MinesweeperComponent implements OnInit {
 
@@ -60,12 +63,16 @@ export class MinesweeperComponent implements OnInit {
   seconds: number = 0; //seconds to display
   minutes: number = 0; // minutes to display
   hours: number = 0; // hours to display  
+  totalTimePlayed: number = 0;
+  bestTimes: HighScore[] = [];
+  bestTimesKey = 'best_times';
 
   timerSubscription: Subscription;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.bestTimes = JSON.parse(window.localStorage.getItem(this.bestTimesKey) || '[]');
     this.generateBoard();
   }
 
@@ -194,6 +201,7 @@ export class MinesweeperComponent implements OnInit {
       this.gameWon = true;
       this.minesMarked = this.mines;
       this.revealMines();
+      this.bestTimes = this.updateBestTimes();
     }
   }
 
@@ -203,15 +211,33 @@ export class MinesweeperComponent implements OnInit {
     }
   }
 
+  updateBestTimes(): HighScore[] {
+    let fetched_times: HighScore[] = JSON.parse(window?.localStorage?.getItem(this.bestTimesKey) || '[]');
+
+    if (fetched_times.length < 10) {
+      fetched_times.push(new HighScore(this.totalTimePlayed, new Date()));
+    } else {
+      if (this.totalTimePlayed < fetched_times[fetched_times.length - 1].time) {
+        fetched_times.pop();
+        fetched_times.push(new HighScore(this.totalTimePlayed, new Date()));
+      }
+    }
+
+    fetched_times = _.sortBy(fetched_times, 'time');
+
+    window.localStorage.setItem(this.bestTimesKey, JSON.stringify(fetched_times));
+    return fetched_times;
+  }
+
   initTimerSub(): void {
     this.timerSubscription = timer(10, 10).subscribe(() => {
       // update time values
       let now = Date.now().valueOf();
-      let timePlayed = now - this.timeStarted - this.totalPauseTime;
-      this.centiseconds = Math.floor((timePlayed / 10) % 100);
-      this.seconds = Math.floor((timePlayed / 1000) % 60)
-      this.minutes = Math.floor((timePlayed / 60000) % 60);
-      this.hours = Math.floor(timePlayed / 3600000)
+      this.totalTimePlayed = now - this.timeStarted - this.totalPauseTime;
+      this.centiseconds = Math.floor((this.totalTimePlayed / 10) % 100);
+      this.seconds = Math.floor((this.totalTimePlayed / 1000) % 60)
+      this.minutes = Math.floor((this.totalTimePlayed / 60000) % 60);
+      this.hours = Math.floor(this.totalTimePlayed / 3600000)
     });
   }
 
@@ -219,7 +245,6 @@ export class MinesweeperComponent implements OnInit {
     for (const row of this.board) {
       for (const tile of row) {
         tile.uncovered = true;
-
       }
     }
   }
