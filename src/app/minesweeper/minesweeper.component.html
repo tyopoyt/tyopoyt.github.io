@@ -25,6 +25,14 @@
             </ng-container>
         </div>
     </mat-grid-list>
+    <div class="scoreboard">
+        <div>
+            Fastest Times
+        </div>
+        <p *ngFor="let score of bestTimes">
+            {{ score.time | scorePipe }} - {{ score.date | date:'medium'}}
+        </p>
+    </div>
     <span id="pause-message" *ngIf="paused">
         <p>No cheating ;)</p>
     </span>

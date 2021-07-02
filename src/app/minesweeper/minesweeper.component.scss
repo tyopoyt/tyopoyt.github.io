@@ -92,12 +92,20 @@ span.minesweeper-header {
     }
 }
 
+div.scoreboard {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 20vw;
+    text-align: center;
+}
+
 mat-grid-tile {
     border-radius: 3px;
 
-     &:not(.game-over) {
-        transition: all .025s linear;
-     }
+    &:not(.game-over) {
+    transition: all .025s linear;
+    }
 
     &.mines-1 {
         color: #0100fe;
