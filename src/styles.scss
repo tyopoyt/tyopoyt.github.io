@@ -8,6 +8,13 @@
 body {
     margin: 0px;
     padding: 0px;
+    height: 100vh;
+
+    .page-body {
+        height: 100vh;
+        display: grid;
+        grid-template-rows: 4vh 1fr;
+    }
 }
 
 mat-icon {
