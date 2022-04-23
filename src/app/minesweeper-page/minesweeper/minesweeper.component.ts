@@ -1,9 +1,9 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { Tile } from '../models/tile.model';
+import { Tile } from '../../models/tile.model';
 import * as _ from 'lodash';
-import { Point } from '../models/point.model';
+import { Point } from '../../models/point.model';
 import { Subscription, timer } from 'rxjs';
-import { HighScore } from '../models/highScore';
+import { HighScore } from '../../models/highScore';
 import { DecimalPipe } from '@angular/common';
 
 export enum VisitPurpose {
