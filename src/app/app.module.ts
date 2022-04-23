@@ -12,7 +12,8 @@ import { ScorePipePipe } from './pipes/score-pipe.pipe';
 import { MinesweeperPageComponent } from './minesweeper-page/minesweeper-page.component';
 import { GalleryPageComponent } from './gallery-page/gallery-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { GalleryComponent } from './gallery-page/gallery/gallery.component'
+import { GalleryComponent } from './gallery-page/gallery/gallery.component';
+import { ShuffleArrayPipe } from './pipes/shuffle-array.pipe'
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { GalleryComponent } from './gallery-page/gallery/gallery.component'
     MinesweeperPageComponent,
     GalleryPageComponent,
     NavbarComponent,
-    GalleryComponent
+    GalleryComponent,
+    ShuffleArrayPipe
   ],
   imports: [
     BrowserModule,
