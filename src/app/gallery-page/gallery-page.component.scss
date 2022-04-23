@@ -6,8 +6,8 @@
 
 app-gallery {
     width: 61vw;
-    height: calc(96vh - 1rem);
+    height: calc(96vh - 1rem - 4px);
     overflow: auto;
-    margin-top: 1rem;
+    margin: 1rem 0 4px;
     padding-right: 4px;
 }
