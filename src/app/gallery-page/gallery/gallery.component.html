@@ -1,8 +1,7 @@
 <div class="gallery-container">
     <mat-grid-list [cols]="cols" [gutterSize]="'4px'" rowHeight="3:2">
-        <!-- [rowspan]="tile.size" [colspan]="tile.size"> -->
-        <mat-grid-tile *ngFor="let tile of photoTiles | shuffleArray">
-            <img src="{{tile}}">
+        <mat-grid-tile *ngFor="let tile of photoTiles | shuffleArray" [rowspan]="tile.rows" [colspan]="tile.cols">
+            <img src="{{tile.preview}}">
         </mat-grid-tile>
     </mat-grid-list>
 </div>
