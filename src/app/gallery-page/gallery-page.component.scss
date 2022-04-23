@@ -3,3 +3,11 @@
     align-items: center;
     justify-content: center;
 }
+
+app-gallery {
+    width: 61vw;
+    height: calc(96vh - 1rem);
+    overflow: auto;
+    margin-top: 1rem;
+    padding-right: 4px;
+}

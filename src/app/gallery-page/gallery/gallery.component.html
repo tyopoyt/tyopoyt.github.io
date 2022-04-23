@@ -1,1 +1,8 @@
-<h1>Photography gallery coming soon!™</h1>
+<div class="gallery-container">
+    <mat-grid-list [cols]="cols" [gutterSize]="'4px'" rowHeight="3:2">
+        <!-- [rowspan]="tile.size" [colspan]="tile.size"> -->
+        <mat-grid-tile *ngFor="let tile of photoTiles | shuffleArray">
+            <img src="{{tile}}">
+        </mat-grid-tile>
+    </mat-grid-list>
+</div>
