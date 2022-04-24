@@ -1,1 +1,1 @@
-ng build --baseHref="https://davidcrouse.dev" & XCOPY ..\CNAME .\docs & XCOPY .\src\index.html ".\docs\404.html*"
+ng build --baseHref="https://davidcrouse.dev" & XCOPY ..\CNAME .\docs & XCOPY .\docs\index.html ".\docs\404.html*"
