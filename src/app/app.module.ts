@@ -13,7 +13,8 @@ import { MinesweeperPageComponent } from './minesweeper-page/minesweeper-page.co
 import { GalleryPageComponent } from './gallery-page/gallery-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { GalleryComponent } from './gallery-page/gallery/gallery.component';
-import { ShuffleArrayPipe } from './pipes/shuffle-array.pipe'
+import { ShuffleArrayPipe } from './pipes/shuffle-array.pipe';
+import { LightboxComponent } from './gallery-page/lightbox/lightbox.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ShuffleArrayPipe } from './pipes/shuffle-array.pipe'
     GalleryPageComponent,
     NavbarComponent,
     GalleryComponent,
-    ShuffleArrayPipe
+    ShuffleArrayPipe,
+    LightboxComponent
   ],
   imports: [
     BrowserModule,
