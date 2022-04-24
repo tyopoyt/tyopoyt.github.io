@@ -12,5 +12,8 @@ export class AppComponent {
     this.matIconRegistry.addSvgIcon('mine', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/mine.svg'));
     this.matIconRegistry.addSvgIcon('flag', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/flag.svg'));
     this.matIconRegistry.addSvgIcon('cancel', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/cancel.svg'));
+    this.matIconRegistry.addSvgIcon('chevron-right', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/chevron-right.svg'));
+    this.matIconRegistry.addSvgIcon('chevron-left', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/chevron-left.svg'));
+    this.matIconRegistry.addSvgIcon('close', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/close.svg'));
   }
 }

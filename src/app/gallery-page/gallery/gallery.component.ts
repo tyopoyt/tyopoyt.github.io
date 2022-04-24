@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PhotoTile } from 'src/app/models/photo-tile';
+import { LightboxComponent } from '../lightbox/lightbox.component';
 
 @Component({
   selector: 'app-gallery',
@@ -7,6 +8,8 @@ import { PhotoTile } from 'src/app/models/photo-tile';
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
+
+  @ViewChild('lightbox') lightbox: LightboxComponent;
 
   photoTiles: PhotoTile[] = [];
   cols = 6; 
@@ -31,5 +34,9 @@ export class GalleryComponent implements OnInit {
       const cols = 3;
       this.photoTiles.push(new PhotoTile(src, preview, rows, cols));
     }
+  }
+
+  showLightbox(index: number) {
+    this.lightbox.show(index);
   }
 }
