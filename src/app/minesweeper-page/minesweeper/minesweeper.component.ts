@@ -1,9 +1,9 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { Tile } from '../../models/tile.model';
+import { Tile } from '../../models/tile';
 import * as _ from 'lodash';
-import { Point } from '../../models/point.model';
+import { OrderedPair } from '../../models/ordered-pair';
 import { Subscription, timer } from 'rxjs';
-import { HighScore } from '../../models/highScore';
+import { HighScore } from '../../models/high-score';
 import { DecimalPipe } from '@angular/common';
 
 export enum VisitPurpose {
@@ -92,7 +92,7 @@ export class MinesweeperComponent implements OnInit {
     for (let x = 0; x < this.rows; x++) {
       const rowTiles = []
       for (let y = 0; y < this.cols; y++) {
-        rowTiles.push(new Tile({mines: 0, flagged: false, uncovered: false, clicked: false, coords: new Point(x, y)}))
+        rowTiles.push(new Tile({mines: 0, flagged: false, uncovered: false, clicked: false, coords: new OrderedPair(x, y)}))
       }
       this.board[x] = rowTiles;
     }
@@ -118,13 +118,13 @@ export class MinesweeperComponent implements OnInit {
     for (let x = 0; x < this.rows; x++) {
       for (let y = 0; y < this.cols; y++) {
         if (this.board[x][y].mines > -1) {
-          this.board[x][y].mines = this.visitNeighbors(VisitPurpose.mines, new Point(x, y));
+          this.board[x][y].mines = this.visitNeighbors(VisitPurpose.mines, new OrderedPair(x, y));
         }
       }
     }
   }
 
-  visitNeighbors(purpose: VisitPurpose, coords: Point): number {
+  visitNeighbors(purpose: VisitPurpose, coords: OrderedPair): number {
     let mines = 0;
     for (let rowOffset = -1; rowOffset < 2; rowOffset++) {
       for (let colOffset = -1; colOffset < 2; colOffset++) {
@@ -144,7 +144,7 @@ export class MinesweeperComponent implements OnInit {
                 this.uncoverTile(this.board[coords.x][coords.y]);
               }
               if (this.board[coords.x][coords.y].mines === 0 && !this.board[neighborX][neighborY].uncovered && !this.board[neighborX][neighborY].flagged) {
-                this.visitNeighbors(VisitPurpose.reveal, new Point(neighborX, neighborY))
+                this.visitNeighbors(VisitPurpose.reveal, new OrderedPair(neighborX, neighborY))
               }
             }
           }
@@ -171,7 +171,7 @@ export class MinesweeperComponent implements OnInit {
       }
 
       if (tile.mines === 0) {
-        this.visitNeighbors(VisitPurpose.reveal, new Point(tile.coords.x, tile.coords.y))
+        this.visitNeighbors(VisitPurpose.reveal, new OrderedPair(tile.coords.x, tile.coords.y))
       }
     }
   }

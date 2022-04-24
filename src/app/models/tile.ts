@@ -1,11 +1,11 @@
-import { Point } from "./point.model";
+import { OrderedPair } from "./ordered-pair";
 
 export class Tile {
     mines: number;
     flagged: boolean;
     uncovered: boolean;
     clicked: boolean;
-    coords: Point;
+    coords: OrderedPair;
 
     constructor(tile?: Tile) {
         if (tile) {

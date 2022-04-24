@@ -1,4 +1,4 @@
-export class Point {
+export class OrderedPair {
     x: number;
     y: number;
 
