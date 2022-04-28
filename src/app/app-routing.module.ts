@@ -6,7 +6,7 @@ import { MinesweeperPageComponent } from './minesweeper-page/minesweeper-page.co
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'minesweeper',
+    redirectTo: 'gallery',
     pathMatch: 'full'
   },
   {

@@ -27,7 +27,7 @@
     </mat-grid-list>
     <div class="scoreboard">
         <div>
-            Fastest Times
+            Your Fastest Times
         </div>
         <p *ngFor="let score of bestTimes">
             {{ score.time | scorePipe }} - {{ score.date | date:'medium'}}
