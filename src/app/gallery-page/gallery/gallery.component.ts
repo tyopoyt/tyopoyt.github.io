@@ -14,8 +14,8 @@ export class GalleryComponent implements OnInit {
 
   photoTiles: PhotoTile[] = [];
   cols = 6;
-  numLandscape = 18;
-  numPortrait = 5;
+  numLandscape = 19;
+  numPortrait = 7;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
