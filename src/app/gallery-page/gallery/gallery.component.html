@@ -1,8 +1,9 @@
 <div class="gallery-container">
     <mat-grid-list [cols]="cols" [gutterSize]="'4px'" rowHeight="3:2">
-        <mat-grid-tile *ngFor="let tile of photoTiles | shuffleArray; index as i" [rowspan]="tile.rows" [colspan]="tile.cols">
+        <mat-grid-tile *ngFor="let tile of sortedTiles; index as i" [rowspan]="tile.rows" [colspan]="tile.cols">
             <img src="{{tile.preview}}" (click)="showLightbox(i)">
         </mat-grid-tile>
     </mat-grid-list>
+    <button class="sort-button" (click)="nextSort()">clickme</button>
 </div>
 <app-lightbox #lightbox [photos]="photoTiles"></app-lightbox>
