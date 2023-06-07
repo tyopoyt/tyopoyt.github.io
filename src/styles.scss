@@ -63,5 +63,24 @@ app-gallery {
 
     @media screen and (max-width: 1100px) {
         width: calc(100vw - 4rem);
-      }
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .hide-when-small {
+        display: none;
+    }
+    .hide-when-large {
+        display: inherit;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .hide-when-small {
+        display: inherit;
+    }
+    .hide-when-large {
+        display: none;
+    }
+
 }

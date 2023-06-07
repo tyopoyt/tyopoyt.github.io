@@ -1,11 +1,14 @@
 <div class="navbar">
     <div class="button border-button margin" [class.active]="active === 'astro-gallery'" (click)="navTo('astro-gallery')">
-        <p>🌌 Astrophotography</p>
+        <p class="hide-when-small">🌌 Astrophotography</p>
+        <p class="hide-when-large">🌌 Astro</p>
     </div>
     <div class="button border-button margin" [class.active]="active === 'gallery'" (click)="navTo('gallery')">
-        <p>📷 Film Photography</p>
+        <p class="hide-when-small">📷 Film Photography</p>
+        <p class="hide-when-large">📷 Film</p>
     </div>
     <div class="button border-button" [class.active]="active === 'minesweeper'" (click)="navTo('minesweeper')">
-        <p>💣 Minesweeper</p>
+        <p class="hide-when-small">💣 Minesweeper</p>
+        <p class="hide-when-large">💣 Game</p>
     </div>
 </div>
