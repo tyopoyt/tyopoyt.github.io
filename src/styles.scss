@@ -45,3 +45,41 @@ mat-icon {
 button {
     cursor: pointer;
 }
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+app-gallery {
+    border-radius: 4px;
+    height: calc(96vh - 1rem - 4px);
+    margin: 1rem 0 4px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-right: 4px;
+    width: 61vw;
+
+    @media screen and (max-width: 1100px) {
+        width: calc(100vw - 4rem);
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .hide-when-small {
+        display: none;
+    }
+    .hide-when-large {
+        display: inherit;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .hide-when-small {
+        display: inherit;
+    }
+    .hide-when-large {
+        display: none;
+    }
+}

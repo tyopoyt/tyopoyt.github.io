@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AstroGalleryPageComponent } from './astro-gallery-page/astro-gallery-page.component';
 import { GalleryPageComponent } from './gallery-page/gallery-page.component';
 import { MinesweeperPageComponent } from './minesweeper-page/minesweeper-page.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'gallery',
+    redirectTo: 'astro-gallery',
     pathMatch: 'full'
   },
   {
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'gallery',
     component: GalleryPageComponent
+  },
+  {
+    path: 'astro-gallery',
+    component: AstroGalleryPageComponent
   }
 ];
 

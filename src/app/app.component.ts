@@ -15,5 +15,8 @@ export class AppComponent {
     this.matIconRegistry.addSvgIcon('chevron-right', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/chevron-right.svg'));
     this.matIconRegistry.addSvgIcon('chevron-left', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/chevron-left.svg'));
     this.matIconRegistry.addSvgIcon('close', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/close.svg'));
+    this.matIconRegistry.addSvgIcon('shuffle', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/shuffle-variant.svg'));
+    this.matIconRegistry.addSvgIcon('calendar-asc', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/sort-calendar-ascending.svg'));
+    this.matIconRegistry.addSvgIcon('calendar-desc', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/sort-calendar-descending.svg'));
   }
 }
