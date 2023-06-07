@@ -1,4 +1,7 @@
 <div class="navbar">
+    <div class="button border-button margin" [class.active]="active === 'astro-gallery'" (click)="navTo('astro-gallery')">
+        <p>🌌 Astrophotography</p>
+    </div>
     <div class="button border-button margin" [class.active]="active === 'gallery'" (click)="navTo('gallery')">
         <p>📷 Film Photography</p>
     </div>

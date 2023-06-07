@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.active = this.router.url.includes('minesweeper') ? 'minesweeper' : 'gallery';
+    this.active = this.router.url.split('/').pop() || 'gallery';
   }
 
   navTo(page: string): void  {

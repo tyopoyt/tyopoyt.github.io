@@ -12,9 +12,10 @@ import { ScorePipePipe } from './pipes/score-pipe.pipe';
 import { MinesweeperPageComponent } from './minesweeper-page/minesweeper-page.component';
 import { GalleryPageComponent } from './gallery-page/gallery-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { GalleryComponent } from './gallery-page/gallery/gallery.component';
+import { GalleryComponent } from './components/gallery/gallery.component';
 import { ShuffleArrayPipe } from './pipes/shuffle-array.pipe';
-import { LightboxComponent } from './gallery-page/lightbox/lightbox.component'
+import { LightboxComponent } from './components/lightbox/lightbox.component';
+import { AstroGalleryPageComponent } from './astro-gallery-page/astro-gallery-page.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { LightboxComponent } from './gallery-page/lightbox/lightbox.component'
     NavbarComponent,
     GalleryComponent,
     ShuffleArrayPipe,
-    LightboxComponent
+    LightboxComponent,
+    AstroGalleryPageComponent
   ],
   imports: [
     BrowserModule,
