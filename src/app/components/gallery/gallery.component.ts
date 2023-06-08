@@ -12,7 +12,7 @@ import { LightboxComponent } from '../lightbox/lightbox.component';
 export class GalleryComponent implements OnInit {
 
   @ViewChild('lightbox') lightbox: LightboxComponent;
-  @Input() gallerySource: string = 'assets/gallery';
+  @Input() gallerySource: string = 'assets/film-gallery';
   @Input() numLandscape: number = 0;
   @Input() numPortrait: number = 0;
 

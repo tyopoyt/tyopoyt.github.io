@@ -15,7 +15,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ShuffleArrayPipe } from './pipes/shuffle-array.pipe';
 import { LightboxComponent } from './components/lightbox/lightbox.component';
-import { AstroGalleryPageComponent } from './astro-gallery-page/astro-gallery-page.component'
+import { AstroGalleryPageComponent } from './astro-gallery-page/astro-gallery-page.component';
+import { DigitalGalleryPageComponent } from './digital-gallery-page/digital-gallery-page.component'
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AstroGalleryPageComponent } from './astro-gallery-page/astro-gallery-pa
     GalleryComponent,
     ShuffleArrayPipe,
     LightboxComponent,
-    AstroGalleryPageComponent
+    AstroGalleryPageComponent,
+    DigitalGalleryPageComponent
   ],
   imports: [
     BrowserModule,
