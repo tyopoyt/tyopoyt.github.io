@@ -44,17 +44,19 @@ export class GalleryComponent implements OnInit {
     for (let i = 0; i < this.numLandscape; i++) {
       const src = `${this.gallerySource}/landscape/${i}.jpg`
       const preview = `${this.gallerySource}/landscape/preview/${i}.jpg`;
+      const fullsize = `${this.gallerySource}/landscape/fullsize/${i}.jpg`;
       const rows = 3;
       const cols = 3;
-      this.photoTiles.push(new PhotoTile(i, src, preview, rows, cols));
+      this.photoTiles.push(new PhotoTile(i, src, preview, fullsize, rows, cols));
     }
 
     for (let i = 0; i < this.numPortrait; i++) {
       const src = `${this.gallerySource}/portrait/${i}.jpg`
       const preview = `${this.gallerySource}/portrait/preview/${i}.jpg`;
+      const fullsize = `${this.gallerySource}/portrait/fullsize/${i}.jpg`;
       const rows = 6;
       const cols = 3;
-      this.photoTiles.push(new PhotoTile(i, src, preview, rows, cols));
+      this.photoTiles.push(new PhotoTile(i, src, preview, fullsize, rows, cols));
     }
 
     this.nextSort(true);

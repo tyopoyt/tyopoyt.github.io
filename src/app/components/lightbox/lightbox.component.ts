@@ -28,6 +28,17 @@ export class LightboxComponent implements OnInit {
     this._show = false;
   }
 
+  downloadImage() {
+    const anchor = document.createElement('a');
+    anchor.href = this.photos[this.cur].fullsize;
+    anchor.download = `img-${this.cur}`;
+
+    document.body.appendChild(anchor);
+    anchor.click();
+
+    document.body.removeChild(anchor);
+  }
+
   // show the next photo
   nextPhoto() {
     // when cur increments to photos.length it'll reset to 0
