@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { PhotoTile } from 'src/app/models/photo-tile';
 
 @Component({
@@ -9,6 +9,7 @@ import { PhotoTile } from 'src/app/models/photo-tile';
 export class LightboxComponent implements OnInit {
 
   @Input() photos: PhotoTile[] = [];
+  @Output() moreRequested = new EventEmitter<null>();
 
   cur: number = 0;
   _show: boolean = false;
@@ -27,10 +28,25 @@ export class LightboxComponent implements OnInit {
     this._show = false;
   }
 
+  downloadImage() {
+    const anchor = document.createElement('a');
+    anchor.href = this.photos[this.cur].fullsize;
+    anchor.download = `img-${this.cur}`;
+
+    document.body.appendChild(anchor);
+    anchor.click();
+
+    document.body.removeChild(anchor);
+  }
+
   // show the next photo
   nextPhoto() {
     // when cur increments to photos.length it'll reset to 0
     this.cur = (this.cur + 1) % this.photos.length;
+
+    if (this.cur === this.photos.length - 2) {
+      this.moreRequested.emit();
+    }
   }
 
   // show the previous photo

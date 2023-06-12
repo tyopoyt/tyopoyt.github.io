@@ -11,6 +11,10 @@
     transition: all 0.17s linear;
 }
 
+.button-box {
+    width: 4rem;
+}
+
 button {
     display:flex;
     justify-content: center;
@@ -26,6 +30,13 @@ button {
         position: absolute;
         top: 1.5rem;
         right: 1.5rem;
+    }
+
+    &.download {
+        position: absolute;
+        top: 1.5rem;
+        right: 5.5rem;
+        padding: 0.3528rem 0 0.3528rem // Because this icon is not square
     }
 
     mat-icon {
@@ -47,11 +58,15 @@ button {
         object-fit: contain;
         grid-column: 1;
         grid-row: 1;
-        transition: all 0.17s linear;
+        transition: opacity 0.17s linear;
     }
 }
 
 .hidden {
     opacity: 0;
     visibility: hidden;
+}
+
+.display-none {
+    display: none;
 }

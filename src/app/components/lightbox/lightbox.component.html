@@ -1,13 +1,23 @@
 <div class="lightbox-container hidden" [class.hidden]="!_show">
-    <button (click)="prevPhoto()">
-        <mat-icon svgIcon="chevron-left"></mat-icon>
-    </button>
+    <span class="button-box">
+        <button *ngIf="cur !== 0" (click)="prevPhoto()">
+            <mat-icon svgIcon="chevron-left"></mat-icon>
+        </button>
+    </span>
     <div class="image-box">
-        <img *ngFor="let photo of photos; index as i" [class.hidden]="cur !== i" src="{{photo.src}}">
+        <img *ngFor="let photo of photos; index as i"
+             [class.hidden]="cur !== i" 
+             [class.display-none]="cur !== i && cur -1 !== i && cur + 1 !== i" 
+             src="{{photo.src}}" loading="lazy">
     </div>
-    <button (click)="nextPhoto()">
-        <mat-icon svgIcon="chevron-right"></mat-icon>
-    </button>
+    <span class="button-box">
+        <button *ngIf="cur < photos.length - 1" (click)="nextPhoto()">
+            <mat-icon svgIcon="chevron-right"></mat-icon>
+        </button>
+    </span>
+    <!-- <button class="download" (click)="downloadImage()">
+        <mat-icon svgIcon="download"></mat-icon>
+    </button> -->
     <button class="exit" (click)="hide()">
         <mat-icon svgIcon="close"></mat-icon>
     </button>

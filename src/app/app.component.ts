@@ -19,5 +19,6 @@ export class AppComponent {
     this.matIconRegistry.addSvgIcon('shuffle', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/shuffle-variant.svg'));
     this.matIconRegistry.addSvgIcon('calendar-asc', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/sort-calendar-ascending.svg'));
     this.matIconRegistry.addSvgIcon('calendar-desc', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/sort-calendar-descending.svg'));
+    this.matIconRegistry.addSvgIcon('download', this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/download.svg'));
   }
 }
