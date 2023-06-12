@@ -5,7 +5,7 @@
                 <img src="{{tile.preview}}" (click)="showLightbox(i)" loading="lazy">
             </mat-grid-tile>
         </mat-grid-list>
-        <span *ngIf="!atTop" class="to-top-holder">
+        <span *ngIf="!atTop" class="to-top-holder" [class.narrow-device]="narrowDevice">
             <button class="to-top-button" (click)="scrollToTop()"><mat-icon svgIcon="chevron-up"></mat-icon></button>
         </span>
     </div>

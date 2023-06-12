@@ -27,6 +27,7 @@ export class GalleryComponent implements OnInit {
   sortIcon: string = 'shuffle';
   sortText: string = 'Random';
   atTop = true;
+  narrowDevice = false;
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -35,12 +36,14 @@ export class GalleryComponent implements OnInit {
     } else if (window.innerWidth <= PHONE_WIDTH && this.cols > 3) {
       this.cols = 3;
     }
+    this.narrowDevice = window.innerWidth / window.innerHeight < 0.438
   }
 
   constructor() {}
 
   ngOnInit(): void {
     this.cols = window.innerWidth > PHONE_WIDTH ? 6 : 3;
+    this.narrowDevice = window.innerWidth / window.innerHeight < 0.5
     for (let i = 0; i < this.numLandscape; i++) {
       const src = `${this.gallerySource}/landscape/${i}.jpg`
       const preview = `${this.gallerySource}/landscape/preview/${i}.jpg`;
@@ -65,7 +68,7 @@ export class GalleryComponent implements OnInit {
   onScroll() {
     const element = this.listContainer.nativeElement
   
-    if (Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) <= (element.scrollTopMax / 10)) {
+    if (Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) <= (element.scrollTopMax / 5)) {
       this.loadImageChunk();
     }
 
