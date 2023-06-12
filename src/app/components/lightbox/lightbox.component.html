@@ -3,7 +3,7 @@
         <mat-icon svgIcon="chevron-left"></mat-icon>
     </button>
     <div class="image-box">
-        <img *ngFor="let photo of photos; index as i" [class.hidden]="cur !== i" src="{{photo.src}}">
+        <img *ngFor="let photo of photos; index as i" [class.hidden]="cur !== i" src="{{photo.src}}" loading="lazy">
     </div>
     <button (click)="nextPhoto()">
         <mat-icon svgIcon="chevron-right"></mat-icon>

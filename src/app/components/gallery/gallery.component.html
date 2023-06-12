@@ -2,7 +2,7 @@
     <div #listContainer class="list-container" (scroll)="onScroll()">
         <mat-grid-list [cols]="cols" [gutterSize]="'4px'" rowHeight="3:2">
             <mat-grid-tile *ngFor="let tile of shownTiles; index as i" [rowspan]="tile.rows" [colspan]="tile.cols">
-                <img src="{{tile.preview}}" (click)="showLightbox(i)">
+                <img src="{{tile.preview}}" (click)="showLightbox(i)" loading="lazy">
             </mat-grid-tile>
         </mat-grid-list>
         <span *ngIf="!atTop" class="to-top-holder">
