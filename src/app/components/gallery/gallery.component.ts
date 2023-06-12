@@ -62,8 +62,8 @@ export class GalleryComponent implements OnInit {
 
   onScroll = () => {
     const element = this.listContainer.nativeElement
-    console.log(element)
-    if (Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) <= 500) {
+  
+    if (Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) <= (element.scrollTopMax / 10)) {
       this.shownTiles.push(...this.sortedTiles.slice(this.shownTiles.length, this.shownTiles.length + this.tileChunk))
     }
 
