@@ -75,7 +75,7 @@ export class GalleryComponent implements OnInit {
     }
 
     this.atTop = element.scrollTop === 0;
-    this. texti = `${element.scrollHeight} - ${element.scrollTop} - ${element.clientHeight} = ${element.scrollHeight - element.scrollTop - element.clientHeight} (${Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) <= (element.scrollTopMax / 5)})`
+    this. texti = `${element.scrollHeight} - ${element.scrollTop} - ${element.clientHeight} = ${element.scrollHeight - element.scrollTop - element.clientHeight} [${element.scrollTopMax / 5} (1/5 of ${element.scrollTopMax})] (${Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) <= (element.scrollTopMax / 5)})`
   }
 
   loadImageChunk() {
