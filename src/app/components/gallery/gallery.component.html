@@ -11,4 +11,7 @@
     </div>
     <button class="sort-button" (click)="nextSort()">Sorted by {{sortText}}<mat-icon class="sort-icon" svgIcon="{{sortIcon}}"></mat-icon></button>
 </div>
+<div *ngIf="hasscrolledtotop">
+    {{texti}}
+</div>
 <app-lightbox #lightbox [photos]="shownTiles" (moreRequested)="loadImageChunk()"></app-lightbox>
