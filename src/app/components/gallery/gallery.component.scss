@@ -44,6 +44,10 @@ mat-grid-list {
     pointer-events: none;
     width: calc(100% - 21px);
 
+    &.narrow-device {
+        width: calc(50% - 21px);
+    }
+
     .to-top-button {
         display: flex;
         align-items: center;

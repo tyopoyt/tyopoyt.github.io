@@ -44,7 +44,7 @@ export class LightboxComponent implements OnInit {
     // when cur increments to photos.length it'll reset to 0
     this.cur = (this.cur + 1) % this.photos.length;
 
-    if (this.cur === this.photos.length - 2) {
+    if (this.cur >= this.photos.length - 2) {
       this.moreRequested.emit();
     }
   }
