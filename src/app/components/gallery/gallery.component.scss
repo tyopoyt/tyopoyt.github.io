@@ -35,6 +35,30 @@ mat-grid-list {
     }
 }
 
+.to-top-holder {
+    position: absolute;
+    bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    width: calc(100% - 21px);
+
+    .to-top-button {
+        display: flex;
+        align-items: center;
+        border: none;
+        border-radius: 4px;
+        background-color: lightskyblue;
+        color: white;
+        pointer-events: all;
+    
+        .sort-icon {
+            margin-left: 4px;
+        }
+    }
+}
+
 .gallery-container {
     position: relative;
     overflow: hidden;
