@@ -28,8 +28,6 @@ export class GalleryComponent implements OnInit {
   sortText: string = 'Random';
   atTop = true;
   narrowDevice = false;
-  hasscrolledtotop = false;
-  texti = 'no scrolls yet'
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -70,12 +68,11 @@ export class GalleryComponent implements OnInit {
   onScroll() {
     const element = this.listContainer.nativeElement
   
-    if (Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) <= (element.scrollTopMax / 5)) {
+    if (Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) <= (element.scrollHeight / 5)) {
       this.loadImageChunk();
     }
 
     this.atTop = element.scrollTop === 0;
-    this. texti = `${element.scrollHeight} - ${element.scrollTop} - ${element.clientHeight} = ${element.scrollHeight - element.scrollTop - element.clientHeight} [${element.scrollTopMax / 5} (1/5 of ${element.scrollTopMax})] (${Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) <= (element.scrollTopMax / 5)})`
   }
 
   loadImageChunk() {
@@ -88,7 +85,6 @@ export class GalleryComponent implements OnInit {
 
   scrollToTop() {
     this.listContainer.nativeElement.scrollTo({'top': 0, 'left': 0, 'behavior': 'smooth'});
-    this.hasscrolledtotop = true;
   }
 
   nextSort(initialLoad: boolean = false) {
