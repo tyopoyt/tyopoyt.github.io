@@ -60,14 +60,18 @@ export class GalleryComponent implements OnInit {
     this.nextSort(true);
   }
 
-  onScroll = () => {
+  onScroll() {
     const element = this.listContainer.nativeElement
   
     if (Math.abs(element.scrollHeight - element.scrollTop - element.clientHeight) <= (element.scrollTopMax / 10)) {
-      this.shownTiles.push(...this.sortedTiles.slice(this.shownTiles.length, this.shownTiles.length + this.tileChunk))
+      this.loadImageChunk();
     }
 
     this.atTop = element.scrollTop === 0;
+  }
+
+  loadImageChunk() {
+    this.shownTiles.push(...this.sortedTiles.slice(this.shownTiles.length, this.shownTiles.length + this.tileChunk))
   }
 
   showLightbox(index: number) {

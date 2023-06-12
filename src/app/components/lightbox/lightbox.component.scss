@@ -11,6 +11,10 @@
     transition: all 0.17s linear;
 }
 
+.button-box {
+    width: 4rem;
+}
+
 button {
     display:flex;
     justify-content: center;
@@ -53,5 +57,6 @@ button {
 
 .hidden {
     opacity: 0;
-    visibility: hidden;
+    // visibility: hidden;
+    display: none;
 }
