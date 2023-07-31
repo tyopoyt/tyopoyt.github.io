@@ -3,6 +3,7 @@ import { PhotoTile } from 'src/app/models/photo-tile';
 import { ShuffleArrayPipe } from 'src/app/pipes/shuffle-array.pipe';
 import { PHONE_WIDTH } from 'src/app/services/window-size.service';
 import { LightboxComponent } from '../lightbox/lightbox.component';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-gallery',
@@ -16,6 +17,7 @@ export class GalleryComponent implements OnInit {
   @Input() gallerySource: string = 'assets/film-gallery';
   @Input() numLandscape: number = 0;
   @Input() numPortrait: number = 0;
+  @Input() defaultSort: string = 'shuffle';
 
   photoTiles: PhotoTile[] = [];
   sortedTiles: PhotoTile[] = [];
@@ -28,6 +30,13 @@ export class GalleryComponent implements OnInit {
   sortText: string = 'Random';
   atTop = true;
   narrowDevice = false;
+
+  // This is terrible but I don't have time to fix it right now
+  initialSortMap = {
+    'shuffle': 'asc',
+    'desc': 'shuffle',
+    'asc': 'desc'
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize() {
@@ -62,6 +71,7 @@ export class GalleryComponent implements OnInit {
       this.photoTiles.push(new PhotoTile(i, src, preview, fullsize, rows, cols));
     }
 
+    this.sorting = _.get(this.initialSortMap, this.defaultSort)
     this.nextSort(true);
   }
 
@@ -104,7 +114,7 @@ export class GalleryComponent implements OnInit {
       this.sorting = 'asc';
       this.sortIcon = 'calendar-desc';
       this.sortText = 'Oldest'
-    } else {// if descending, go to shuffle
+    } else {// if ascending, go to shuffle
       this.sortedTiles = this.shuffleArrayPipe.transform(this.photoTiles);
       this.shownTiles = this.sortedTiles.slice(0, this.tileChunk);
       this.sorting = 'shuffle';
